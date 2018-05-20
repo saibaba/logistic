@@ -3,7 +3,8 @@ https://www2.isye.gatech.edu/~brani/isyebayes/bank/handout1.pdf
 https://math.stackexchange.com/questions/514558/show-posterior-probability-takes-the-form-of-the-logistic-function
 https://en.wikipedia.org/wiki/Odds_ratio
 http://faculty.cas.usf.edu/mbrannick/regression/Logistic.html
-
+https://www.unm.edu/~schrader/biostat/bio2/Spr06/lec11.pdf
+https://pdfs.semanticscholar.org/presentation/ed97/041e2e770e16113ebf3d36210b8b1ee6e802.pdf
 
 p(h|f) = p(f|h) * p(h) / p(f)
 
