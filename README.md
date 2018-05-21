@@ -3,10 +3,12 @@ Problem statement
 
 For a binary categorical (say Y = 1 or 0) dependent variable based on observing some data (say x), posterior probability of category
 
+```
 P(Y=1 | X=x) and P(Y=0 | X=x) are used to determine the category.
 
 P(Y=1|X=x) = P(X=x|Y=1) * P(Y=1) / P(X=x) where P(X=x) = P(X=x|Y=1) * P(Y=1) + P(X=x|Y=0) * P(Y=0)
 P(Y=0|X=x) = P(X=x|Y=0) * P(Y=0) / P(X=x) where P(X=x) = P(X=x|Y=1) * P(Y=1) + P(X=x|Y=0) * P(Y=0)
+```
 
 In general we want to write a program that takes 'x' in input and gives above probabilities in the output.
 
@@ -18,14 +20,17 @@ Consider the problem from the opening para of 1st reference (Allen Downey).
 
 Here ~ represents not.
 
+```
 P(H)     = 0.9
 P(F|H)   = 0.1
 P(M|H)   = 0.9
 P(F|~H)  = 0.5
 P(M|~H)  = 0.5
+```
 
 So, JPT:
 
+```
       M          F
 
 H    0.81       0.09    ---> P(H) = 0.9
@@ -34,12 +39,15 @@ H    0.81       0.09    ---> P(H) = 0.9
       |          |
       v          v
     P(M)=0.86  P(F)=0.14
+```
 
 Some basic calculations (discussed in the 1st section of the same reference) :
 
+```
 P(H|M) = P(H, M) / P(M) = 0.81/0.86  = 0.942
 P(H|F) = P(F, H) / P(F) = 0.09/0.14 = 0.643
 
+```
 More calculations in side bar.
 
 
@@ -48,6 +56,7 @@ sidebar: demonstrating Bayes rule in on-line mode to update posteriors
 
 Posteriror (numerator portion) from previous step is used as prior (numerator portion) for the next data item!
 
+```
 P(H|F) = P(F|H) * P(H) / P(F)
 
     = 0.1  * 0.9 / ( 0.1 * 0.9 + 0.5 * 0.1 )
@@ -74,19 +83,21 @@ P(~H|FFF) = ...
 or 
 
 P(H|FFF) = 0.0009 / (0.0009 + 0.0125) = 0.067 = 0.07
+```
 
 And, likelihoods:
 
+```
 Likelihood of first student being F given H = P(F|H) = 0.1 or 10%
 Likelihood of first student being F given ~H = P(F|~H) = 0.5 or 50%
 Likelihood of first 3 student being F given ~H = P(FFF|~H) = 0.5 * 0.5 * 0.5 =  0.125 or 12.5% [assuming conditional independency; not true in reality, won't girls come in groups ?]
-
------- end of sidebar --------
+```
 
 
 Odds
 ----
 
+```
 Odds of hypothesis:
 O(H) = P(H) / (1-P(H)) = 0.9/0.1 = 9
 
@@ -120,21 +131,25 @@ Another way (due to symmetry will be the same):
 OR(M|H) = Odds of seeing male student assuming hypothesis, H is correct relative to odds of seeing male student assuming H is wrong
 OR(M|H) = O(M) * LR(H|M) = [ 0.86 / (1-0.86) ] * P(H|M) / P(H|F) 
     =  ( 0.86 / (1-0.86) ) * 0.942 / 0.643 = 9 (checks!)
+```
 
 Exercise: prove symmetry of odds ratio
 ------
 
 Another useful fact:
 
+```
 Odds ratio = likelihood ratio !!!!
 
 OR(H|M) = O(H|M) / O(H|F) =  [ O(H) * LR(M|H) ] * [ O(H) * LR(F|H) ]
                   =  LR(M|H) / LR(F|H)
 
+```
 
 Posteriors
 ---------
 
+```
 P(H|F) = [ P(F|H) * P(H) ] / [ P(F|H) * P(H) + P(F|~H) * P(~H) ]
        = 1 / [ 1 + ( P(F|~H) * P(~H) / P(F|H) * P(H) ) ]
        = 1 / (1+ exp(-a))
@@ -207,17 +222,21 @@ Hence,
 
 logit(p) = ln (p/1-p) = b0 + x * b1 = LO(H|X=x)
 
+```
 So, 
 
+```
 p = posterior probability of H given data, X.
 b0 = LO(H|F) = log odds of hypothesis, H.
 b1 = LOR(H|M) = log odds ratio of hypothesis, that represent odds of hypothesis when data, X = 1 relative to when X = 0.
 logit(p) = LO(H|X=x) = posterior log odds of H, hypothesis, given observed data, X.
 
+```
 
 Generalize
 ----------
 
+```
 P(Y=1|X=x) = 1 / [1 + ( P(X=x|Y=0) * P(Y=0) / P(X=x|Y=1) * P(Y=1) ) ]
            = 1 / (1+ exp(-a))
            = p (say)
@@ -235,21 +254,26 @@ a = ln { O(Y=1) * LR(X=x|Y=1) } = LO(Y=1) + LLR(X=x|Y=1) = LO(Y=1|X=x)
 
 ln(p/1-p) = logit(p) = a = LO(Y=1|X=x)
 
+```
 Exercise:  Solve the problem posed in reference 3 (stackexchange)
 
 ------------------
 
 CPT (grouping by H) :
 
+```
             M                 F
 H    P(M, H) / P(H)       P(F, H) / P(H)
 ~H   P(M, ~H) / P(~H)     P(F, ~H) / P(~H)
+```
 
 or
+```
         M              F
 H    P(M|H)        P(F|H)
 ~H   P(M|~H)       P(F|~H) 
 
+```
 
 
 References
